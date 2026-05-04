@@ -33,14 +33,11 @@ ALLOWED_GROUPS = [-1001598921227, -1003951391128]
 TRACKED_CHAT_IDS = [CHANNEL_ID, GROUP_ID_TO_SEED]
 
 API_KEYS = [
-    "AIzaSyAjgCxxxxxxxxxxxxxxC3-QFs4BOjmc",
-    "AIzaSyDufuxxxxxxxxxxxxxxxXS7_wbo5sh4",
-    "AIzaSyCFx3xxxxxxxxxxxxxxcLrummtM83U",
-    "AIzaSyDVUQxxxxxxxxxxxxx9XR_Kr6AbDO4OyIY",
-    "AIzaSyB30yxxxxxxxxxxxxaOVkv2zeW8",
-    "AIzaSyD0EAqxxxxxxxxxxxfiOCvk7q2mOQkU",
-    "AIzaSyA7KxxxxxxxxxxxxazB4rtHfJkiieomUE",
-    "AIzaSyDxlxxxxxxxxxxxGSAHZ-xzOJam8"
+    "AIzaSyAvB3z3xp_4p-JDZHnHUCbYiwY6FQLmeTc",
+    "AIzaSyAu9XBTmxIhW2Auu5NSoGDDMETodDbCSEE",
+    "AIzaSyDrA8NyKu3Wml7yjiCs0Nq4HD8ESPfTE4E",
+    "AIzaSyBPhursmgXMDXa9LMHCG2GHCEZXixXcH7s",
+    "AIzaSyA0RlNwyYOmxEfhUEVQ1BNwwwGZrMRGoso",
 ]
 
 AI_MODELS = [
