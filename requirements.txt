@@ -1,1 +1,8 @@
-
+python-telegram-bot[job-queue]
+flask
+gspread
+oauth2client
+beautifulsoup4
+feedparser
+requests
+google-genai
