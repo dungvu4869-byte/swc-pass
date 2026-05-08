@@ -40,7 +40,13 @@ API_KEYS = [
     "AIzaSyA0RlNwyYOmxEfhUEVQ1BNwwwGZrMRGoso",
 ]
 
+# 🆕 URL PROXY CỦA CLOUDFLARE WORKER (DÙNG ĐỂ LÁCH LỖI BLOCK IP TRÊN RENDER)
+# Sau khi tạo xong Cloudflare Worker, hãy dán link vào đây. Ví dụ: "https://ten-worker-cua-ban.workers.dev"
+GEMINI_PROXY_URL = "https://noisy-darkness-2898.dungvu4869.workers.dev"
+
 AI_MODELS = [
+    'gemini-1.5-flash',
+    'gemini-1.5-pro',
     'gemini-2.5-flash',
     'gemini-2.5-pro',
     'gemini-2.0-flash',
@@ -66,7 +72,7 @@ USER_CONTEXT = {}
 # ==============================================================================
 POSTS_FILE = "channel_posts.json"
 
-def loadx_posts():
+def load_posts():
     if not os.path.exists(POSTS_FILE):
         return []
     try:
@@ -435,7 +441,10 @@ async def ask_ai(user_text, document_path=None, user_name="Khách", chat_id=None
 
     for key in API_KEYS:
         try:
-            client = genai.Client(api_key=key)
+            if GEMINI_PROXY_URL:
+                client = genai.Client(api_key=key, http_options={'base_url': GEMINI_PROXY_URL})
+            else:
+                client = genai.Client(api_key=key)
             for model_name in AI_MODELS:
                 try:
                     response = await asyncio.to_thread(_call_ai_sync, client, model_name, full_input, document_path)
@@ -447,8 +456,12 @@ async def ask_ai(user_text, document_path=None, user_name="Khách", chat_id=None
                         if len(CHAT_HISTORY[chat_id]) > 12:
                             CHAT_HISTORY[chat_id] = CHAT_HISTORY[chat_id][-12:]
                     return ans
-                except: continue
-        except: continue
+                except Exception as e:
+                    print(f"⚠️ Lỗi model {model_name} (Key: {key[:8]}...): {e}")
+                    continue
+        except Exception as e:
+            print(f"⚠️ Lỗi khởi tạo Client (Key: {key[:8]}...): {e}")
+            continue
 
     fallback_options = [
         "Hệ thống bên em đang load data chút xíu bác ơi 😅 Bác nhắn lại em sau vài phút nhé.",
@@ -487,7 +500,10 @@ Nội dung: {content}"""
 
     for key in API_KEYS:
         try:
-            client = genai.Client(api_key=key)
+            if GEMINI_PROXY_URL:
+                client = genai.Client(api_key=key, http_options={'base_url': GEMINI_PROXY_URL})
+            else:
+                client = genai.Client(api_key=key)
             for model_name in AI_MODELS:
                 try:
                     response = await asyncio.to_thread(
@@ -500,8 +516,12 @@ Nội dung: {content}"""
                         )
                     )
                     return response.text.replace("**", "")
-                except: continue
-        except: continue
+                except Exception as e:
+                    print(f"⚠️ Lỗi model {model_name} (Key: {key[:8]}...): {e}")
+                    continue
+        except Exception as e:
+            print(f"⚠️ Lỗi khởi tạo Client (Key: {key[:8]}...): {e}")
+            continue
     return None
 
 # ==============================================================================
