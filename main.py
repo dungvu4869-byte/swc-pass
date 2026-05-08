@@ -26,7 +26,7 @@ SHEET_NAME = "Du_Lieu_Bot_SWC"
 CHANNEL_ID = -1001308148293
 
 GROUP_ID_TO_SEED = -1001598921227
-ADMIN_IDS = [507318519, 7515902413]
+ADMIN_IDS = [5792590251]
 ALLOWED_GROUPS = [-1001598921227, -1003951391128]
 
 # 🆕 DANH SÁCH NGUỒN ĐƯỢC PHÉP GOM TIN (Channel + Group chính)
@@ -66,7 +66,7 @@ USER_CONTEXT = {}
 # ==============================================================================
 POSTS_FILE = "channel_posts.json"
 
-def load_posts():
+def loadx_posts():
     if not os.path.exists(POSTS_FILE):
         return []
     try:
